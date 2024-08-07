@@ -28,31 +28,31 @@ export class IonicTimepickerModalComponent implements OnInit, OnDestroy {
 
   slideOptsHours = {
     centeredSlides: true,
-    slidesPerView: 5,
+    slidesPerView: 3,
     initialSlide: 0,
     direction: 'vertical',
-    loop: true
+    loop: false
   };
 
   slideOptsMinutes = {
     centeredSlides: true,
-    slidesPerView: 5,
+    slidesPerView: 3,
     initialSlide: 0,
     direction: 'vertical',
-    loop: true
+    loop: false
   };
 
   slideOptsSeconds = {
     centeredSlides: true,
-    slidesPerView: 5,
+    slidesPerView: 3,
     initialSlide: 0,
     direction: 'vertical',
-    loop: true
+    loop: false
   };
 
   slideOptsMeridian = {
     centeredSlides: true,
-    slidesPerView: 5,
+    slidesPerView: 3,
     initialSlide: 0,
     direction: 'vertical',
     loop: false
@@ -68,6 +68,7 @@ export class IonicTimepickerModalComponent implements OnInit, OnDestroy {
   selectedTime: any;
 
   isReady = false;
+  isClicked = false;
 
   constructor(
     private navParams: NavParams,
@@ -116,6 +117,7 @@ export class IonicTimepickerModalComponent implements OnInit, OnDestroy {
   // get slider hours active index
   onChangeHoursSlide(event) {
     this.sliderHoursActiveIndex = event.target.swiper.realIndex;
+    this.isClicked = true;
   }
 
   // get slider minutes active index
@@ -190,12 +192,17 @@ export class IonicTimepickerModalComponent implements OnInit, OnDestroy {
     this.selectedTime = this.setTimeInMomentObject();
     modal.dismiss({ time: (this.selectedTime) });
   }
-
+  
   // set time in moment object
   setTimeInMomentObject() {
     const formateArray = [];
     const timeArray = [];
-
+    console.log(this.isClicked)
+    if(!this.isClicked){
+      this.sliderHoursActiveIndex = this.sliderHoursActiveIndex-3;
+    }
+    this.isClicked = false;
+    console.log(this.hoursArray[this.sliderHoursActiveIndex])
     const charZeroInLocale = moment().second(0).format('s');
     // console.log('charZeroInLocale : ' + charZeroInLocale);
     if (this.mainObj.timeFormat.indexOf('H') >= 0) {
