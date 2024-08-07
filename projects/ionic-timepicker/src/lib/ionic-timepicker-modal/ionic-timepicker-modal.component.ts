@@ -94,7 +94,7 @@ export class IonicTimepickerModalComponent implements OnInit, OnDestroy {
   inItTimePicker(): Observable<any> {
     const myObservable = new Observable(observer => {
       if (this.navParams.get('selectedTime')) {
-        console.log('Selected time =>', this.navParams.get('selectedTime'));
+        // console.log('Selected time =>', this.navParams.get('selectedTime'));
         this.selectedTime = this.navParams.get('selectedTime');
       }
       this.mainObj = this.initTimePickerObject(this.navParams.get('objConfig'));
@@ -197,12 +197,12 @@ export class IonicTimepickerModalComponent implements OnInit, OnDestroy {
   setTimeInMomentObject() {
     const formateArray = [];
     const timeArray = [];
-    console.log(this.isClicked)
+    // console.log(this.isClicked)
     if(!this.isClicked){
       this.sliderHoursActiveIndex = this.sliderHoursActiveIndex-3;
     }
     this.isClicked = false;
-    console.log(this.hoursArray[this.sliderHoursActiveIndex])
+    // console.log(this.hoursArray[this.sliderHoursActiveIndex])
     const charZeroInLocale = moment().second(0).format('s');
     // console.log('charZeroInLocale : ' + charZeroInLocale);
     if (this.mainObj.timeFormat.indexOf('H') >= 0) {
